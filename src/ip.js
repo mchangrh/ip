@@ -11,13 +11,14 @@ const handleRequest = (request) => {
   // more options here https://developers.cloudflare.com/workers/runtime-apis/request#incomingrequestcfproperties
   const country = (request.cf || {}).country
   // return json object if requested
-  if (request.url.endsWith(".json")) return new Response(JSON.stringify({ip, country}), {
-    headers: {
-      ...noCache,
-      "Content-Type": "application/json;charset=UTF-8"
-    }})
   // return text response if on API path, otherwise HTML
-  return (request.url.includes("/api"))
+  return (request.url.endsWith(".json"))
+    ? new Response(JSON.stringify({ip, country}), {
+      headers: {
+        ...noCache,
+        "Content-Type": "application/json;charset=UTF-8"
+      }})
+    : (request.url.endsWith("/api"))
     ? new Response(ip, {
       headers: {
         ...noCache,

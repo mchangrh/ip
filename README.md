@@ -4,7 +4,7 @@
 - 186b of HTML
 
 `/*.json` - JSON response with IP and country  
-`/api/*` - plaintext response
+`/api` - plaintext response
 
 ## vpn.js
 - Checks if connected to VPN network
