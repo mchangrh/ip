@@ -7,13 +7,12 @@ const handleRequest = (request) => {
   if (request.url.includes("favicon")) return new Response(null)
   // get connecting IP and country
   const ip = request.headers.get("CF-Connecting-IP")
-  // get country from request.cf
+  // get country asn and city from request.cf
   // more options here https://developers.cloudflare.com/workers/runtime-apis/request#incomingrequestcfproperties
-  const country = (request.cf || {}).country
-  // return json object if requested
-  // return text response if on API path, otherwise HTML
+  const { country, asn, city} = (request.cf || {})
+  // return json if ends with .json, text response if on API path, otherwise HTML
   return (request.url.endsWith(".json"))
-    ? new Response(JSON.stringify({ip, country}), {
+    ? new Response(JSON.stringify({ip, country, city, asn}), {
       headers: {
         ...noCache,
         "Content-Type": "application/json;charset=UTF-8"
