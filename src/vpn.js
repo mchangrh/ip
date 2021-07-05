@@ -4,7 +4,7 @@ addEventListener("fetch", (event) => {
 
 const handleRequest = (request) => {
   // immediately return 404 for favicon
-  if (request.url.includes("favicon")) return new Response({ status: 404 })
+  if (request.url.includes("favicon")) return new Response(null)
   // get connecting IP and country
   const ip = request.headers.get("CF-Connecting-IP")
   const country = (request.cf || {}).country

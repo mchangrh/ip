@@ -4,7 +4,7 @@ addEventListener("fetch", (event) => {
 
 const handleRequest = (request) => {
   // if looking for favicon, escape early
-  if (request.url.includes("favicon")) return new Response({ status: 404 })
+  if (request.url.includes("favicon")) return new Response(null)
   // get connecting IP and country
   const ip = request.headers.get("CF-Connecting-IP")
   // get country from request.cf
@@ -35,7 +35,7 @@ const textResponse = (str) => new Response(str, {
   }
 });
 
-const htmlResponse = (res) =>
+const htmlResponse = (ip) =>
 new Response(`<!DOCTYPE html><style>body{background-color:#121212;color:#D5D7D8;font-size:7vmin;display:flex;min-height:calc(100vh - 3.25rem);justify-content:center;align-items:center}</style><pre>${ip}`, {
   headers: {
     ...defaultHeaders,
