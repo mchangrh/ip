@@ -1,0 +1,24 @@
+{
+  "name": "@mchangrh/ip",
+  "version": "1.0.0",
+  "description": "returns connecting IP address",
+  "main": "dist/ip.js",
+  "scripts": {
+    "build": "uglifyjs src/ip.js -o dist/ip.js -c -m",
+    "build:vpn": "uglifyjs src/vpn.js src/vpnlist.js -o dist/vpn.js -c -m",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mchangrh/ip.git"
+  },
+  "author": "Michael Chang <michael@mchang.name>",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/mchangrh/ip/issues"
+  },
+  "homepage": "https://github.com/mchangrh/ip#readme",
+  "devDependencies": {
+    "uglify-js": "^3.13.10"
+  }
+}
