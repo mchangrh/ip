@@ -18,7 +18,7 @@ const handleRequest = (request) => {
         "Content-Type": "application/json;charset=UTF-8"
       }})
     : (request.url.endsWith("/api") || request.headers.get('User-Agent').startsWith("curl/") )
-    ? new Response(ip, {
+    ? new Response(ip+\n, {
       headers: {
         ...noCache,
         "Content-Type": "text/plain;charset=UTF-8",
