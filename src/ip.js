@@ -4,7 +4,7 @@ addEventListener("fetch", (event) => {
 
 const handleRequest = (request) => {
   // if looking for favicon, escape early
-  if (request.url.includes("favicon")) return new Response(null)
+  if (request.url.includes("favicon")) return new Response({ status: 404})
   // get connecting IP and country
   const ip = request.headers.get("CF-Connecting-IP")
   // get country asn and city from request.cf
@@ -14,24 +14,15 @@ const handleRequest = (request) => {
   return (request.url.endsWith(".json"))
     ? new Response(JSON.stringify({ip, country, city, asn}), {
       headers: {
-        ...noCache,
-        "Content-Type": "application/json;charset=UTF-8"
+        ...noCache, "Content-Type": "application/json;charset=UTF-8"
       }})
     : (request.url.endsWith("/api") || request.headers.get('User-Agent').startsWith("curl/") )
     ? new Response(`${ip}\n`, {
-      headers: {
-        ...noCache,
-        "Content-Type": "text/plain;charset=UTF-8",
-      }})
-    : new Response(`<!DOCTYPE html><style>body{background-color:#121212;color:#D5D7D8;font-size:7vmin;display:flex;min-height:calc(100vh - 3.25rem);justify-content:center;align-items:center}</style><pre>${ip}`, {
-      headers: {
-        ...noCache,
-        "Content-Type": "text/html;charset=UTF-8"
-      }
+      headers: { ...noCache, "Content-Type": "text/plain;charset=UTF-8" }
+    })
+    : new Response(`<!DOCTYPE html><style>body{background:#111;color:#ddd;font-size:7vmin;display:flex;min-height:98.5vh;justify-content:center;align-items:center}</style><pre>${ip}`, {
+      headers: { ...noCache, "Content-Type": "text/html;charset=UTF-8" }
     })
 }
 
-const noCache = {
-  "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-  "Expires": "0",
-}
+const noCache = { "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate", "Expires": "0" }

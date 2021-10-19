@@ -1,7 +1,7 @@
 # What is my IP - CF Worker
 
 - Returns your IP address
-- 186b of HTML
+- 161b of HTML
 
 `/*.json` - JSON response with IP and country  
 `/api` - plaintext response

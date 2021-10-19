@@ -2,6 +2,7 @@ name = "ip"
 type = "javascript"
 account_id = ""
 workers_dev = true
+compatibility_date = "2021-09-14"
 
 [build]
 command = "npm install && npm run build"
