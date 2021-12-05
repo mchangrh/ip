@@ -1,10 +1,8 @@
-addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request))
-})
+addEventListener("fetch", (event) => event.respondWith(handleRequest(event.request)))
 
 const handleRequest = (request) => {
   // immediately return 404 for favicon
-  if (request.url.includes("favicon")) return new Response({ status: 404})
+  if (request.url.includes("favicon")) return new Response("",{ status: 404})
   // get connecting IP and country
   const ip = request.headers.get("CF-Connecting-IP")
   const country = (request.cf || {}).country
@@ -20,13 +18,10 @@ const handleRequest = (request) => {
     }
   }
   // IP not in list, not connected
-  return sendResponse('Not Connected')
+  return sendResponse(`Not Connected\nIP: ${ip}`)
 }
 
-const noCache = {
-  "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-  "Expires": "0",
-}
+const noCache = { "Cache-Control": "no-store" }
 
 const jsonResponse = (res) => new Response(JSON.stringify(res), {
   headers: { ...noCache, "Content-Type": "application/json;charset=UTF-8" }
