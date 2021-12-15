@@ -11,27 +11,20 @@ const handleRequest = (request) => {
 
   // loop through map and check for IP
   for (let [k, server] of ipmap) {
-    if (ip.startsWith(k)) {
+    if (ip.startsWith(k))
       return request.url.endsWith(".json")
         ? jsonResponse({ip, server, country})
         : sendResponse(`IP: ${ip}\nServer: ${server}\nCountry: ${country}`)
-    }
   }
   // IP not in list, not connected
   return sendResponse(`Not Connected\nIP: ${ip}`)
 }
 
-const noCache = { "Cache-Control": "no-store" }
+const noCache = {"Cache-Control": "no-store"}
 
-const jsonResponse = (res) => new Response(JSON.stringify(res), {
-  headers: { ...noCache, "Content-Type": "application/json;charset=UTF-8" }
-})
+const jsonResponse = (res) => new Response(JSON.stringify(res),{headers:{...noCache,"Content-Type":"application/json"}})
+const textResponse = (str) => new Response(str,{headers:{...noCache,"Content-Type":"text/plain"}});
 
-const textResponse = (str) => new Response(str, {
-  headers: { ...noCache, "Content-Type": "text/plain;charset=UTF-8" }
-});
-
-const htmlResponse = (ip) =>
-new Response(`<!DOCTYPE html><style>body{background:#111;color:#ddd;font-size:7vmin;display:flex;min-height:98.5vh;justify-content:center;align-items:center}</style><pre>${ip}`, {
-  headers: { ...noCache, "Content-Type": "text/html;charset=UTF-8" }
-})
+const htmlResponse = (ip) => new Response(
+  `<!DOCTYPE html><body style=background:#111;color:#ddd;font-size:6em;display:flex;min-height:98vh;justify-content:center;align-items:center><pre>${ip}`,
+  {headers: {...noCache, "Content-Type": "text/html"}})
