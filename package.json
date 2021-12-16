@@ -4,8 +4,8 @@
   "description": "returns connecting IP address",
   "main": "dist/ip.js",
   "scripts": {
-    "build": "mkdir dist && uglifyjs src/ip.js -o dist/ip.js -c -m",
-    "build:vpn": "mkdir dist && uglifyjs src/vpn.js src/vpnlist.js -o dist/vpn.js -c -m",
+    "build": "mkdir -p dist && uglifyjs src/ip.js -o dist/ip.js -c -m",
+    "build:vpn": "uglifyjs src/vpn.js src/vpnlist.js -o dist/vpn.js -c -m",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

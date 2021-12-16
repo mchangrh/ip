@@ -9,10 +9,10 @@ const handleRequest = (request) => {
   const ip = headers.get("CF-Connecting-IP")
   // get country asn and city from request.cf
   // more options here https://developers.cloudflare.com/workers/runtime-apis/request#incomingrequestcfproperties
-  const {country, asn, city} = (request.cf || {})
+  const {country, asOrganization, city} = (request.cf || {})
   // return json if ends with .json, text response if on API path, otherwise HTML
   return (url.endsWith(".json"))
-    ? new Response(JSON.stringify({ip, country, city, asn}),
+    ? new Response(JSON.stringify({ip, country, city, asOrganization}),
       {headers:{...noCache, "Content-Type": "application/json"}})
     : (url.endsWith("/api") || headers.get('User-Agent')?.startsWith("curl/") )
       ? new Response(`${ip}\n`,
