@@ -13,7 +13,7 @@
     "url": "git+https://github.com/mchangrh/ip.git"
   },
   "author": "Michael Chang <michael@mchang.name>",
-  "license": "MPL-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mchangrh/ip/issues"
   },
