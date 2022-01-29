@@ -18,6 +18,6 @@ const handleRequest = (request) => {
       ? new Response(`${ip}\n`,
         {headers:{...noCache, "Content-Type":"text/plain" }})
       : new Response(
-        `<!DOCTYPE html><body style=background:#111;color:#ddd;font-size:6em;display:flex;min-height:98vh;justify-content:center;align-items:center><pre>${ip}`,
+        `<!DOCTYPE html><body style=background:#111;color:#ddd;font-size:4vw;display:flex;min-height:98vh;justify-content:center;align-items:center><pre>${ip}`,
         { headers: {...noCache,"Content-Type":"text/html"}})
 }
