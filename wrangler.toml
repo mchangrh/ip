@@ -1,10 +1,8 @@
 name = "ip"
-type = "javascript"
 account_id = "d5ccf1d783709bbdc23fc29786f38736"
+main = "dist/ip.js"
 workers_dev = true
-compatibility_date = "2021-09-14"
+compatibility_date = "2023-03-25"
 
 [build]
 command = "npm install && npm run build"
-[build.upload]
-format = "service-worker"
